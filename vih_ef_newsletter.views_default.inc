@@ -10,7 +10,7 @@
 function vih_ef_newsletter_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'newsletters';
   $view->description = '';
   $view->tag = 'default';
@@ -23,12 +23,13 @@ function vih_ef_newsletter_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Nyhedsbrev';
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'mere';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Udfør';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Gendan';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
   $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
@@ -38,6 +39,10 @@ function vih_ef_newsletter_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Elementer pr. side';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['grouping'] = '';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -66,77 +71,33 @@ function vih_ef_newsletter_views_default_views() {
       'separator' => '',
     ),
   );
-  $handler->display->display_options['style_options']['override'] = 1;
-  $handler->display->display_options['style_options']['sticky'] = 0;
-  $handler->display->display_options['style_options']['empty_table'] = 0;
   /* Felt: Indhold: Titel */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Felt: Indhold: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['body']['alter']['html'] = 0;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['body']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['body']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['body']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['body']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '600',
   );
-  $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
   /* Felt: Indhold: Nyhedsbrev */
   $handler->display->display_options['fields']['field_newsletter_file']['id'] = 'field_newsletter_file';
   $handler->display->display_options['fields']['field_newsletter_file']['table'] = 'field_data_field_newsletter_file';
   $handler->display->display_options['fields']['field_newsletter_file']['field'] = 'field_newsletter_file';
   $handler->display->display_options['fields']['field_newsletter_file']['label'] = '';
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_newsletter_file']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_newsletter_file']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_newsletter_file']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_newsletter_file']['hide_alter_empty'] = 0;
+  $handler->display->display_options['fields']['field_newsletter_file']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_newsletter_file']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_newsletter_file']['group_column'] = 'fid';
-  $handler->display->display_options['fields']['field_newsletter_file']['field_api_classes'] = 0;
   /* Sorteringskriterie: Indhold: Oprettelsesdato */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -159,6 +120,7 @@ function vih_ef_newsletter_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['path'] = 'nyhedsbrev';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Nyhedsbrev';
@@ -166,6 +128,7 @@ function vih_ef_newsletter_views_default_views() {
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
@@ -186,6 +149,10 @@ function vih_ef_newsletter_views_default_views() {
     t('Elementer pr. side'),
     t('- Alle -'),
     t('Forskydning'),
+    t('« første'),
+    t('‹ forrige'),
+    t('næste ›'),
+    t('sidste »'),
     t('Page'),
     t('Feed'),
   );

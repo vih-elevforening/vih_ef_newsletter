@@ -10,7 +10,7 @@
 function vih_ef_newsletter_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-nyhedsbrev-body'
+  // Exported field: 'node-nyhedsbrev-body'.
   $fields['node-nyhedsbrev-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function vih_ef_newsletter_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -82,7 +83,7 @@ function vih_ef_newsletter_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-nyhedsbrev-field_newsletter_file'
+  // Exported field: 'node-nyhedsbrev-field_newsletter_file'.
   $fields['node-nyhedsbrev-field_newsletter_file'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +104,7 @@ function vih_ef_newsletter_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'file',
       'settings' => array(
         'display_default' => 0,
